@@ -1,39 +1,35 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './LoginForm.css';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
-// https://www.youtube.com/watch?v=Je3RSqmEV-Y
-// 1. npm install formik --save
+const myValidationSchema = Yup.object().shape({
+    userEmail: Yup.string().required('User email is a mandatory field'),
+    password: Yup.string().required().min(8)
+});
 
-// 2. import and use formik
-import { Formik } from 'formik';
-
-const LoginForm = () => {
-    <Formik>
-        <form className="Form" onSubmit={this.handleSubmit}>
+const LoginForm = ({ initialValues, handleSubmit }) => (
+    <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={myValidationSchema} >
+        <Form className="Form">
             <h2 className="Form-Welcome">Formik & Yup</h2>
             <h2 className="Form-Info">Form managment and validations</h2>
             <div className="Form-Group">
-                <input className="Form-Field"
-                       name="userEmail"
-                       placeholder="User"
-                       type="input"
-                       value={userEmail}
-                       onChange={this.handleUserEmailChange}
-                       onBlur={this.handleUserEmailBlur}
-                />
-                {errorUser !== '' ? <span className="Form-Error">{errorUser}</span> : ''}
+                <Field className="Form-Field" name="userEmail" placeholder="User" type="input" />
+                <ErrorMessage className="Form-Error" component="span" name="userEmail" />
             </div>
             <div className="Form-Group">
-                <input className="Form-Field"
-                       name="password"
-                       placeholder="Password"
-                       type="password"
-                       value={password}
-                       onChange={this.handlePasswordChange} />
+                <Field className="Form-Field" name="password" placeholder="Password" type="password" />
+                <ErrorMessage className="Form-Error" component="span" name="password" />
             </div>
             <button className="Form-Btn" type="submit">Login</button>
-        </form>
+        </Form>
     </Formik>
+)
+
+LoginForm.propTypes = {
+    initialValues: PropTypes.object.isRequired,
+    handleSubmit: PropTypes.func.isRequired
 }
 
 export default LoginForm;
