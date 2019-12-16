@@ -32,22 +32,13 @@ const LoginForm = () => {
             <h2 className="Form-Welcome">Formik & Yup</h2>
             <h2 className="Form-Info">Form managment and validations</h2>
             <div className="Form-Group">
-                <input className="Form-Field"
-                       name="userEmail"
-                       placeholder="User"
-                       type="input"
-                       value={userEmail}
-                       onChange={handleUserEmailChange}
-                       onBlur={handleUserEmailBlur}
+                <input className="Form-Field" name="userEmail" placeholder="User" type="input" value={userEmail}
+                       onChange={handleUserEmailChange} onBlur={handleUserEmailBlur}
                 />
                 {userEmailErrorMessage !== '' ? <span className="Form-Error">{userEmailErrorMessage}</span> : ''}
             </div>
             <div className="Form-Group">
-                <input className="Form-Field"
-                       name="password"
-                       placeholder="Password"
-                       type="password"
-                       value={password}
+                <input className="Form-Field" name="password" placeholder="Password" type="password" value={password}
                        onChange={handlePasswordChange} />
             </div>
             <button className="Form-Btn" type="submit">Login</button>
