@@ -6,7 +6,8 @@ import * as Yup from 'yup';
 
 const myValidationSchema = Yup.object().shape({
     userEmail: Yup.string().required('User email is a mandatory field'),
-    password: Yup.string().required().min(8)
+    password: Yup.string().required().min(8),
+    retypePassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
 });
 
 const LoginForm = ({ initialValues, handleSubmit }) => (
@@ -21,6 +22,10 @@ const LoginForm = ({ initialValues, handleSubmit }) => (
             <div className="Form-Group">
                 <Field className="Form-Field" name="password" placeholder="Password" type="password" />
                 <ErrorMessage className="Form-Error" component="span" name="password" />
+            </div>
+            <div className="Form-Group">
+                <Field className="Form-Field" name="retypePassword" placeholder="Retype your Password" type="password" />
+                <ErrorMessage className="Form-Error" component="span" name="retypePassword" />
             </div>
             <button className="Form-Btn" type="submit">Login</button>
         </Form>

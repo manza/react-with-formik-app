@@ -2,7 +2,7 @@ import React from 'react';
 import LoginForm from './components/LoginForm-Formik'
 
 const handleSubmit = values => console.log(JSON.stringify(values));
-const initialValues = { userEmail: '', password: ''};
+const initialValues = { userEmail: '', password: '', retypePassword: ''};
 
 function App() {
   return (
